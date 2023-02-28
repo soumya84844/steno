@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 import types
+import hist1 as h
 # from google.colab.patches import cv2_imshow
 
 # converting types to binary
@@ -94,7 +95,10 @@ def encodeText():
     # resizing the image as per the need
     resizedImg = cv2.resize(img, (500, 500))
     # displaying the image
-    cv2.imshow('', resizedImg) #check
+    cv2.imshow('ImageWindow', resizedImg) #check
+    cv2.waitKey()
+
+    h.histogram(img_name)
 
     data = input("Enter data to be encoded: ")
     if len(data) == 0:
@@ -105,6 +109,8 @@ def encodeText():
     encodedImage = hide_data(img, data)
     cv2.imwrite(file_name, encodedImage)
 
+    h.histogram(file_name)
+
 
 # defining the function to decode the data in the image
 def decodeText():
@@ -114,8 +120,10 @@ def decodeText():
 
     print("The Steganographic image is as follow: ")
     resizedImg = cv2.resize(img, (500, 500))  # resizing the actual image as per the needs
-    cv2.imshow('', resizedImg)  # displaying the Steganographic image     check
+    cv2.imshow('ImageWindow', resizedImg)  # displaying the Steganographic image     check
+    cv2.waitKey()
 
+    print('Sexy')
     text = show_data(img)
     return text
 
@@ -136,4 +144,3 @@ def steganography():
 
 
 steganography()
-exec(open('hist1.py').read())
